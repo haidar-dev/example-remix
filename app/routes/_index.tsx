@@ -1,8 +1,10 @@
 import type { MetaFunction } from "@remix-run/node";
 
+import { Anchor, Button, DatePicker } from "~/components";
+
 export const meta: MetaFunction = () => {
   return [
-    { title: "Example: Remix" },
+    { title: "remix.haidar.dev - Remix Example" },
     { name: "description", content: "Remix full stack web app example" },
   ];
 };
@@ -10,25 +12,30 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <div>
-      <header>
-        <h1>Example: Remix</h1>
-      </header>
+      <section className="space-y-8">
+        <div className="flex gap-4">
+          <Button>Click this</Button>
+          <DatePicker name="date" />
+        </div>
 
-      <main>
-        <p>
-          Web: <a href="https://remix.haidar.dev">remix.haidar.dev</a>
-        </p>
-        <p>
-          Repo:{" "}
-          <a href="https://github.com/haidar-dev/example-remix">
-            github.com/haidar-dev/example-remix
-          </a>
-        </p>
-      </main>
-
-      <footer>
-        <p>&copy; haidar.dev</p>
-      </footer>
+        <div className="prose">
+          <p>
+            Web:{" "}
+            <Anchor href="https://remix.haidar.dev" withColor>
+              remix.haidar.dev
+            </Anchor>
+          </p>
+          <p>
+            Repo:{" "}
+            <Anchor
+              href="https://github.com/haidar-dev/example-remix"
+              withColor
+            >
+              github.com/haidar-dev/example-remix
+            </Anchor>
+          </p>
+        </div>
+      </section>
     </div>
   );
 }

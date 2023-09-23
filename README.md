@@ -1,5 +1,7 @@
-# Welcome to Remix!
+# remix.haidar.dev
 
+- Web: <https://remix.haidar.dev>
+- Repo: <https://github.com/haidar-dev/example-remix>
 - [Remix Docs](https://remix.run/docs)
 
 ## Development

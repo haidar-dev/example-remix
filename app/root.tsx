@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LinksFunction } from "@remix-run/node";
 import {
@@ -7,13 +8,28 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useNavigation,
 } from "@remix-run/react";
+import NProgress from "nprogress";
+import sansFontStyles from "@fontsource-variable/inter/index.css";
+
+import styles from "~/tailwind.css";
+import { Layout } from "~/components";
 
 export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: sansFontStyles },
+  { rel: "stylesheet", href: styles },
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ];
 
 export default function App() {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    if (navigation.state === "idle") NProgress.done();
+    else NProgress.start();
+  }, [navigation.state]);
+
   return (
     <html lang="en">
       <head>
@@ -23,7 +39,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <Layout>
+          <Outlet />
+        </Layout>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
